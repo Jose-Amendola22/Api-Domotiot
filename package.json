@@ -1,7 +1,7 @@
 {
   "name": "express-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "npm init -y\r npm install typescript -D\r se agrega tsc en script de package.json\r npm run tsc -- --init\r  npm install express -E\r  npm install @types/express -D\r  npm install ts-node-dev -D",
   "main": "index.js",
   "scripts": {
     "dev": "ts-node-dev src/index.ts",
@@ -23,5 +23,13 @@
     "mysql": "^2.18.1",
     "typeorm": "^0.3.20",
     "typeorm-naming-strategies": "^4.1.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jose-Amendola22/Api-Domotiot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Jose-Amendola22/Api-Domotiot/issues"
+  },
+  "homepage": "https://github.com/Jose-Amendola22/Api-Domotiot#readme"
 }
