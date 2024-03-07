@@ -2,6 +2,7 @@ import express from 'express';
 import diaryRouter from './routes/diaries';
 import units from './units/index';
 import products from './products/index'
+import clients from './clients/index'
 
 
 
@@ -20,6 +21,7 @@ app.get('/', (req, res) => {
 app.use('/api/diaries', diaryRouter);
 app.use('/api/units', units);
 app.use('/api/products', products);
+app.use('/api/clients', clients)
 
 
 
