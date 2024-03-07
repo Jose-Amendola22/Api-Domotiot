@@ -10,7 +10,6 @@ export default class CreateProductUseCase {
     }
 
     async execute(productData: Producto): Promise<Producto> {
-        // Aquí podrías realizar cualquier lógica de negocio adicional relacionada con la creación de productos.
         const createdProduct = await this.createProductRepository.execute(productData);
         return createdProduct;
     }
