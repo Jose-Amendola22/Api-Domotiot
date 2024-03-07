@@ -1,7 +1,7 @@
 import Producto from '../domain/entity/ProductTypes';
 import GetProductByIdUseCase from '../useCase/ProductTypeByIdUseCase';
 
-export default class ProductAdapter {
+export default class ProductAdapterGetById {
 
     protected getProductByIdUseCase: GetProductByIdUseCase;
  
