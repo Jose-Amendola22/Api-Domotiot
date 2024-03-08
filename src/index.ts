@@ -3,6 +3,8 @@ import diaryRouter from './routes/diaries';
 import units from './units/index';
 import products from './products/index'
 import clients from './clients/index'
+import odoo from './odoo/index'
+
 
 
 
@@ -22,6 +24,7 @@ app.use('/api/diaries', diaryRouter);
 app.use('/api/units', units);
 app.use('/api/products', products);
 app.use('/api/clients', clients)
+app.use('/api/odoo', odoo)
 
 
 
