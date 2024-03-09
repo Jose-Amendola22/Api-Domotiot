@@ -5,36 +5,29 @@ import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 })
 export default class Cliente {
     @PrimaryGeneratedColumn({
-        name: "cliente_id",
+        name: "id",
         type: "int",
     })
     id: number;
 
     @Column({
-        name: "nombre",
+        name: "name",
         type: "varchar",
         length: 255,
     })
-    nombre: string;
+    name: string;
 
     @Column({
-        name: "apellido",
+        name: "email",
         type: "varchar",
         length: 255,
     })
-    apellido: string;
+    email: string;
 
     @Column({
-        name: "correo_electronico",
-        type: "varchar",
-        length: 255,
-    })
-    correo_electronico: string;
-
-    @Column({
-        name: "telefono",
+        name: "phone",
         type: "varchar",
         length: 15,
     })
-    telefono: string;
+    phone: string;
 }

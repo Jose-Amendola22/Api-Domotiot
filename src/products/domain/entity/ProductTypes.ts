@@ -5,37 +5,31 @@ import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 })
 export default class Producto {
   @PrimaryGeneratedColumn({
-    name: "producto_id",
+    name: "id",
     type: "int",
   })
   id: number;
 
   @Column({
-    name: "nombre",
+    name: "name",
     type: "varchar",
     length: 255,
   })
-  nombre: string;
+  name: string;
 
   @Column({
-    name: "descripcion",
+    name: "description",
     type: "text",
     nullable: true,
   })
-  descripcion: string;
+  description: string;
 
   @Column({
-    name: "Precio",
+    name: "list_price",
     type: "decimal",
     precision: 10,
     scale: 2,
   })
-  precio: number;
+  list_price: number;
 
-  @Column({
-    name: "imagenes",
-    type: "text",
-    nullable: true,
-  })
-  imagenes: string;
 }

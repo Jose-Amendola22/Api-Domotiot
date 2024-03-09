@@ -11,22 +11,28 @@ export default class ProductAdapterCreate {
     }
 
     async createProduct(productData: Producto): Promise<Producto> {
-        // Definir el esquema de validación con Joi
-        const schema = Joi.object({
-            nombre: Joi.string().required(),
-            descripcion: Joi.string().allow('').optional(),
-            precio: Joi.number().required(),
-            imagenes: Joi.string().allow('').optional()
-        });
+        try {
+            const schema = Joi.object({
+                name: Joi.string().required(),
+                description: Joi.string().allow('').optional(),
+                list_price: Joi.number().required(),
+            });
 
-        // Validar los datos del producto
-        const { error } = schema.validate(productData);
-        if (error) {
-            throw new Error(`Error de validación: ${error.message}`);
+            const { error } = schema.validate({
+                name: productData.name,
+                description: productData.description,
+                list_price: productData.list_price
+            });
+            if (error) {
+                throw new Error(`Error de validación: ${error.message}`);
+            }
+
+            const createdProduct = await this.createProductUseCase.execute(productData);
+            return createdProduct;
+        } catch (error) {
+            // Manejar el error
+            console.error("Error al crear el producto", error);
+            throw error; // Re-lanzar el error para que el controlador lo maneje
         }
-
-        // Si los datos son válidos, pasamos al caso de uso para crear el producto
-        const createdProduct = await this.createProductUseCase.execute(productData);
-        return createdProduct;
     }
 }

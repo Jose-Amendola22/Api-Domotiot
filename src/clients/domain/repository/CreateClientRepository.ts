@@ -6,7 +6,7 @@ export default class CreateClientRepository {
         try {
             const connection = await ConnectionSource.connect();
             const newClient = await connection.getRepository(Cliente).create(clientData);
-            await connection.manager.save(newClient); // Guardamos el nuevo producto en la base de datos
+            await connection.manager.save(newClient); 
             return newClient;
         } catch (error) {
             throw new Error('Error al crear el cliente en la base de datos');
