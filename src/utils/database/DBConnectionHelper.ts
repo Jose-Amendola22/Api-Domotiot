@@ -9,10 +9,12 @@ export default class DBConnectionHelper {
   async connect(): Promise<DataSource> {
     
     const connectionSource= {
-      host: "localhost",
+      host:"localhost",
+      //host: "44.199.219.111",
       port: 3306,
       username: "root",
-      password: "root",
+      password:"root",
+      //password: "Siu@Contra!12345",
       database: "Domotiot",
   };
 

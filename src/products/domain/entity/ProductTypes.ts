@@ -25,6 +25,21 @@ export default class Producto {
   description: string;
 
   @Column({
+    name: "reference",
+    type: "text",
+    nullable: true,
+  })
+  reference: string;
+
+  @Column({
+    name: "quantity",
+    type: "decimal",
+    precision: 10,
+    scale: 2,
+  })
+  quantity: number;
+
+  @Column({
     name: "list_price",
     type: "decimal",
     precision: 10,

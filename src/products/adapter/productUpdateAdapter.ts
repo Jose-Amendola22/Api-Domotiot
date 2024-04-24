@@ -12,10 +12,11 @@ export default class ProductUpdateAdapter {
     async updateProduct(productId: number, updatedData: Producto): Promise<Producto | null> {
         // Definir el esquema de validación con Joi
         const schema = Joi.object({
-            nombre: Joi.string().required(),
-            descripcion: Joi.string().allow('').optional(),
-            precio: Joi.number().required(),
-            imagenes: Joi.string().allow('').optional()
+            name: Joi.string().required(),
+            reference: Joi.string().required(),
+            quantity: Joi.number().required(),
+            description: Joi.string().allow('').required(),
+            list_price: Joi.number().required(),
         });
 
         // Validar los datos actualizados del producto

@@ -1,3 +1,4 @@
+import axios from 'axios';
 import OdooClient from "../../utils/odooConnection/createOdooClient";
 import OdooCreateRepository from "../../utils/odooConnection/odooCreateRepository";
 import Producto from "../domain/entity/ProductTypes";
@@ -15,14 +16,43 @@ export default class CreateProductUseCase {
     }
 
     async execute(productData: Producto): Promise<Producto> {
-        const createdProduct = await this.createProductRepository.execute(productData);
-        const odooUid =  await this.odooClient.execute();
-            this.odooCreateRepository.execute({
+        const url = 'http://localhost:8082/backend/create-products.php';
+        const secureKey = 'ed3fa1ce558e1c2528cfbaa3f9940';
+
+        const data = {
+            name: productData.name,
+            description: productData.description,
+            list_price: productData.list_price,
+            quantity: productData.quantity,
+            reference: productData.reference
+        };
+
+        const headers = {
+            'Content-Type': 'application/json',
+        };
+
+        try {
+            // Make the POST request to create the product
+            const createdProduct = await this.createProductRepository.execute(productData);
+            console.log('Product created in local database:', createdProduct);
+            const response = await axios.post(`${url}?secure_key=${secureKey}`, data, { headers });
+            console.log('Product created successfully:', response.data);
+
+            const { reference, quantity, ...odooData } = productData;
+
+            // Assuming this is where you want to execute the Odoo related logic
+            const odooUid = await this.odooClient.execute();
+            await this.odooCreateRepository.execute({
                 uid: odooUid,
                 endpoint: "product.product",
-                data: productData
-            })
-        return createdProduct;
+                data: odooData
+            });
+
+            return response.data; // Return the created product data
+        } catch (error) {
+            console.error('Failed to create product:', error);
+            throw error; // Rethrow the error to handle it in the caller
+        }
     }
 }
 
