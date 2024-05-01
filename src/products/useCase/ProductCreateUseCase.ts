@@ -15,7 +15,14 @@ export default class CreateProductUseCase {
         this.odooCreateRepository = new OdooCreateRepository();
     }
 
+
     async execute(productData: Producto): Promise<Producto> {
+
+        const existingProduct = await this.createProductRepository.findByReference(productData.reference);
+        if (existingProduct) {
+            throw new Error(`Product with reference ${productData.reference} already exists.`);
+        }
+
         const url = 'http://localhost:8082/backend/create-products.php';
         const secureKey = 'ed3fa1ce558e1c2528cfbaa3f9940';
 
@@ -38,14 +45,20 @@ export default class CreateProductUseCase {
             const response = await axios.post(`${url}?secure_key=${secureKey}`, data, { headers });
             console.log('Product created successfully:', response.data);
 
-            const { reference, quantity, ...odooData } = productData;
+            const odooData = {
+                name: productData.name,
+                description: productData.description,
+                list_price: productData.list_price,
+                qty_available: productData.quantity, // Set quantity
+                default_code: productData.reference, // Set reference 
+            };
 
             // Assuming this is where you want to execute the Odoo related logic
             const odooUid = await this.odooClient.execute();
             await this.odooCreateRepository.execute({
                 uid: odooUid,
                 endpoint: "product.product",
-                data: odooData
+                data: odooData,
             });
 
             return response.data; // Return the created product data

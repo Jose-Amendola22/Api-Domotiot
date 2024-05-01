@@ -44,10 +44,10 @@ router.post("/create", async (req: Request, res: Response) => {
 });
 
 router.put("/:id", async (req: Request, res: Response) => {
-    const productId = parseInt(req.params.id);
+    const productReference = req.params.reference;
     const updatedData = req.body;
     try {
-        const updatedProduct = await productUpdateAdapter.updateProduct(productId, updatedData);
+        const updatedProduct = await productUpdateAdapter.updateProduct(productReference, updatedData);
         if (updatedProduct) {
             res.status(200).json(updatedProduct);
         } else {

@@ -20,7 +20,7 @@ export default class CreateClientUseCase {
             this.odooCreateRepository.execute({
                 uid: odooUid,
                 endpoint: "res.partner",
-                data: clientData
+                data: clientData,
             })
         return createdClient;
 

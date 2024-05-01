@@ -2,13 +2,13 @@ import Producto from "../entity/ProductTypes";
 import ConnectionSource from "../../../utils/database/connection";
 
 export default class UpdateProductRepository {
-    async execute(productId: number, updatedData: Producto): Promise<Producto | null> {
+    async execute(productReference: string, updatedData: Producto): Promise<Producto | null> {
         try {
             const connection = await ConnectionSource.connect();
             const productRepository = connection.getRepository(Producto);
 
             // Busca el producto existente por su ID
-            const existingProduct: Producto | null = await productRepository.findOne({ where: { id: productId } });
+            const existingProduct: Producto | null = await productRepository.findOne({ where: { reference: productReference } });
 
             if (!existingProduct) {
                 throw new Error("Producto no encontrado");

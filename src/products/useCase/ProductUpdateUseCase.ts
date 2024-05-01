@@ -1,23 +1,25 @@
 import axios from "axios";
 import Producto from "../domain/entity/ProductTypes";
 import UpdateProductRepository from "../domain/repository/UpdateProductRepository";
+import OdooClient from "../../utils/odooConnection/createOdooClient";
+import OdooUpdateRepository from "../../utils/odooConnection/odooUpdateRepository";
 
 export default class UpdateProductUseCase {
     protected updateProductRepository: UpdateProductRepository;
     protected secureKey: string;
-
+    protected odooClient: OdooClient;
+    protected odooUpdateRepository: OdooUpdateRepository;
+    
     constructor() {
         this.updateProductRepository = new UpdateProductRepository();
-
-        // Cargar las variables de entorno desde el archivo .env
-        
-        // Obtener la clave de seguridad desde las variables de entorno
         this.secureKey = process.env.SECURE_KEY || '';
+        this.odooClient = new OdooClient();
+        this.odooUpdateRepository = new OdooUpdateRepository();
     }
 
-    async execute(productId: number, updatedData: Producto): Promise<Producto | null> {
+    async execute(productReference: string, updatedData: Producto): Promise<Producto | null> {
         try {
-            const updatedProduct = await this.updateProductRepository.execute(productId, updatedData);
+            const updatedProduct = await this.updateProductRepository.execute(productReference, updatedData);
             const secureKey = 'ed3fa1ce558e1c2528cfbaa3f9940';
             
             const transformedData = {
@@ -35,6 +37,22 @@ export default class UpdateProductUseCase {
                     'Content-Type': 'application/json',
                 }
             });
+
+            const odooData = {
+                name: updatedData.name,
+                description: updatedData.description,
+                list_price: updatedData.list_price,
+                qty_available: updatedData.quantity,
+                default_code: updatedData.reference, // Update field name to internalReference
+            };
+            
+            const odooUid = await this.odooClient.execute();
+            await this.odooUpdateRepository.execute({
+                uid: odooUid,
+                endpoint: "product.product",
+                data: odooData,
+            });
+
             return updatedProduct;
         } catch (error) {
             console.error("Error al ejecutar el caso de uso de actualización de producto:", error);
