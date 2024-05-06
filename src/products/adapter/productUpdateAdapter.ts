@@ -13,7 +13,7 @@ export default class ProductUpdateAdapter {
         // Definir el esquema de validación con Joi
         const schema = Joi.object({
             name: Joi.string().required(),
-            reference: Joi.number().required(),
+            reference: Joi.string().required(),
             quantity: Joi.number().required(),
             description: Joi.string().allow('').required(),
             list_price: Joi.number().required(),

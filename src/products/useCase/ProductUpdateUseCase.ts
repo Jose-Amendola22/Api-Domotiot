@@ -45,7 +45,7 @@ export default class UpdateProductUseCase {
                 qty_available: updatedData.quantity,
                 default_code: updatedData.reference, // Update field name to internalReference
             };
-            
+            console.log(odooData.default_code);
             const odooUid = await this.odooClient.execute();
             await this.odooUpdateRepository.execute({
                 uid: odooUid,

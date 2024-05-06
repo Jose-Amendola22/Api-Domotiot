@@ -17,7 +17,7 @@ export default class ProductAdapterCreate {
                 description: Joi.string().allow('').required(),
                 quantity: Joi.number().required(),
                 list_price: Joi.number().required(),
-                reference: Joi.number().required(),
+                reference: Joi.string().allow('').required(),
             });
 
             const { error } = schema.validate({

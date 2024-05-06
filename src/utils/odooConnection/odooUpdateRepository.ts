@@ -10,7 +10,8 @@ export default class OdooUpdateRepository {
             const password = Odoo.odoopassword;
 
             // Search for the record ID based on the internal reference
-            const searchResult = await this.searchRecord(params.data.reference, db, password, params.endpoint);
+            const searchResult = await this.searchRecord(params.data.default_code, db, password, params.endpoint);
+            //console.log("---------------------",params.data.default_code);
 
             if (!searchResult) {
                 console.error('Record with internal reference not found.');
