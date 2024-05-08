@@ -7,7 +7,7 @@ export default class ProductDeleteAdapter {
         this.deleteProductUseCase = new DeleteProductUseCase();
     }
 
-    async deleteProduct(productId: number): Promise<void> {
+    async deleteProduct(productId: string): Promise<void> {
         await this.deleteProductUseCase.execute(productId);
     }
 }

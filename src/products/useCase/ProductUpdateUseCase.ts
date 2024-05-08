@@ -19,6 +19,7 @@ export default class UpdateProductUseCase {
 
     async execute(productReference: string, updatedData: Producto): Promise<Producto | null> {
         try {
+            console.log("ref2", productReference);
             const updatedProduct = await this.updateProductRepository.execute(productReference, updatedData);
             const secureKey = 'ed3fa1ce558e1c2528cfbaa3f9940';
             
@@ -44,6 +45,7 @@ export default class UpdateProductUseCase {
                 list_price: updatedData.list_price,
                 qty_available: updatedData.quantity,
                 default_code: updatedData.reference, // Update field name to internalReference
+                //image: updatedData.image_url
             };
             console.log(odooData.default_code);
             const odooUid = await this.odooClient.execute();

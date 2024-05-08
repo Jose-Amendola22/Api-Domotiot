@@ -15,7 +15,7 @@ const productsGetAllAdapter = new ProductsGetAllAdapter();
 
 // Ruta para obtener un producto por su ID
 router.get("/:id", async (req, res) => {
-    const productId = parseInt(req.params.id);
+    const productId = req.params.id;
     try {
         const product = await productGetByIdAdapter.getProductById(productId); // Usamos el adaptador correcto
         res.json(product);
@@ -44,9 +44,10 @@ router.post("/create", async (req: Request, res: Response) => {
 });
 
 router.put("/:id", async (req: Request, res: Response) => {
-    const productReference = req.params.reference;
+    const productReference = req.params.id;
     const updatedData = req.body;
     try {
+        console.log("FIRST REF::  ", req.params.id);
         const updatedProduct = await productUpdateAdapter.updateProduct(productReference, updatedData);
         if (updatedProduct) {
             res.status(200).json(updatedProduct);
@@ -59,8 +60,9 @@ router.put("/:id", async (req: Request, res: Response) => {
 });
 
 router.delete("/:id", async (req: Request, res: Response) => {
-    const productId = parseInt(req.params.id);
+    const productId = req.params.id;
     try {
+        console.log("Holi", productId);
         await productDeleteAdapter.deleteProduct(productId);
         res.status(204).json({ message: 'Producto eliminado correctamente' }); // No content
     } catch (error) {

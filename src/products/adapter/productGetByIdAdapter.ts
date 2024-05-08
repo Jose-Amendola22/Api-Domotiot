@@ -9,7 +9,7 @@ export default class ProductAdapterGetById {
         this.getProductByIdUseCase = new GetProductByIdUseCase();
     }
 
-    async getProductById(productId: number): Promise<Producto> {
+    async getProductById(productId: string): Promise<Producto> {
         const product = await this.getProductByIdUseCase.execute(productId);
         return product;
     }

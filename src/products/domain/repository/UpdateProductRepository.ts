@@ -8,8 +8,9 @@ export default class UpdateProductRepository {
             const productRepository = connection.getRepository(Producto);
 
             // Busca el producto existente por su ID
+            console.log("Ref:", productReference);
             const existingProduct: Producto | null = await productRepository.findOne({ where: { reference: productReference } });
-
+            console.log(console.log("here: ", existingProduct!.id));
             if (!existingProduct) {
                 throw new Error("Producto no encontrado");
             }

@@ -47,4 +47,18 @@ export default class Producto {
   })
   list_price: number;
 
+  @Column({
+    name: "image_url",
+    type: "text",
+    nullable: true, 
+  })
+  image_url: string;
+
+  @Column({
+    name: "is_Active",
+    type: "int",
+    nullable: false, 
+  })
+  is_Active: number;
+
 }

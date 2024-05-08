@@ -18,6 +18,7 @@ export default class ProductAdapterCreate {
                 quantity: Joi.number().required(),
                 list_price: Joi.number().required(),
                 reference: Joi.string().allow('').required(),
+                image_url: Joi.string().allow(''),
             });
 
             const { error } = schema.validate({
@@ -25,7 +26,8 @@ export default class ProductAdapterCreate {
                 description: productData.description,
                 list_price: productData.list_price,
                 quantity: productData.quantity,
-                reference: productData.reference
+                reference: productData.reference,
+                image_url: productData.image_url
             });
             if (error) {
                 throw new Error(`Error de validación: ${error.message}`);

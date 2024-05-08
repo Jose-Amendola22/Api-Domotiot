@@ -31,7 +31,8 @@ export default class CreateProductUseCase {
             description: productData.description,
             list_price: productData.list_price,
             quantity: productData.quantity,
-            reference: productData.reference
+            reference: productData.reference,
+            image_url: productData.image_url
         };
 
         const headers = {
@@ -51,6 +52,7 @@ export default class CreateProductUseCase {
                 list_price: productData.list_price,
                 qty_available: productData.quantity, // Set quantity
                 default_code: productData.reference, // Set reference 
+                //image: productData.image_url
             };
 
             // Assuming this is where you want to execute the Odoo related logic

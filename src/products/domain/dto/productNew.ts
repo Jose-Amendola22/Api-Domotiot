@@ -4,5 +4,6 @@ export default interface Product {
     precio: number;
     reference: string,
     quantity: number,
-    imagenes?: string;
+    imagenes?: string,
+    isActive: number;
 }
