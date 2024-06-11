@@ -23,7 +23,7 @@ export default class CreateProductUseCase {
             throw new Error(`Product with reference ${productData.reference} already exists.`);
         }
 
-        const url = 'http://localhost:8082/backend/create-products.php';
+        const url = 'http://3.145.164.218:8080/admin692j4sgyho7hi91tnaw/create-products.php';
         const secureKey = 'ed3fa1ce558e1c2528cfbaa3f9940';
 
         const data = {

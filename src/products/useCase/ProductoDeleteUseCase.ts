@@ -30,7 +30,7 @@ export default class DeleteProductUseCase {
             };
             
             // Make a DELETE request to update the product status in PrestaShop
-            await axios.delete(`http://localhost:8082/backend/delete-product.php?secure_key=${secureKey}`, {
+            await axios.delete(`http://3.145.164.218:8080/admin692j4sgyho7hi91tnaw/delete-product.php?secure_key=${secureKey}`, {
                 headers: {
                     'Content-Type': 'application/json',
                 },

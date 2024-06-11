@@ -33,7 +33,7 @@ router.get("/", async (_req: Request, res: Response) => { // Cambia req por _req
     }
 });
 // Ruta para crear un nuevo producto
-router.post("/create", async (req: Request, res: Response) => {
+router.post("/", async (req: Request, res: Response) => {
     try {
         const productData = req.body;
         const newProduct = await productCreateAdapter.createProduct(productData);

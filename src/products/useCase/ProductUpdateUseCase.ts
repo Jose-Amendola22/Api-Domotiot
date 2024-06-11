@@ -33,7 +33,7 @@ export default class UpdateProductUseCase {
             };
             
             // Llamada a la API de PrestaShop utilizando Axios
-            await axios.put(`http://localhost:8082/backend/update-product.php?secure_key=${secureKey}`, transformedData, {
+            await axios.put(`http://3.145.164.218:8080/admin692j4sgyho7hi91tnaw/update-product.php?secure_key=${secureKey}`, transformedData, {
                 headers: {
                     'Content-Type': 'application/json',
                 }

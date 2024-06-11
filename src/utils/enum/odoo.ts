@@ -1,8 +1,8 @@
 enum odooConfig {
-    odoourl= 'http://localhost:8069/',
-    odoodb= 'Domo',
-    odoousername= 'JoseAmendola_22@hotmail.com',
-    odoopassword= '12345'
+    odoourl= 'http://18.117.151.159:8069/',
+    odoodb= 'Domotiot',
+    odoousername= 'joseam342002@gmail.com',
+    odoopassword= 'HorseWithNoName22'
 };
 
 export default odooConfig;
